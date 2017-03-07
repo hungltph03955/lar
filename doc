@@ -1,0 +1,44 @@
+sửa lỗi :
+
+Laravel 5.2 - bootstrap/cache/services.php missing
+
+
+theo cách :
+
+cd bootstrap/
+mkdir cache
+cd.. 
+composer install or sudo composer install
+
+
+các xóa bảng trên cmd:
+
+In v5.2, you might still face the problem. So, try to delete related table manually first using
+
+php artisan tinker
+
+Then
+
+Schema::drop('books')
+
+and exit q
+
+Now, you can successfully php artisan migrate:rollback and php artisan migrate
+
+
+các sữa lỗi : 
+
+là thay đổi trong config/database.php thành:
+
+	
+	'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+
+check đã login hay chưa :
+
+	if (!Auth::check()) {
+		return view('admin.login.login');
+	}else 
+	{
+		return redirect()->route('admin');
+	}
