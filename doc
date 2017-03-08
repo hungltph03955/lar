@@ -42,3 +42,6 @@ check đã login hay chưa :
 	{
 		return redirect()->route('admin');
 	}
+
+trong laravel 5.4 để thay thế bằng file login của mik : ta cần sửa trong file  app/Exceptions/Handler.php
+sửa return redirect()->guest('login'); thành return redirect()->guest('getLogin');﻿

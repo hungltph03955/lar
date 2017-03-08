@@ -15,13 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', ['as'=>'getLogin','uses' => 'LoginController@getLogin']);
-Route::post('login', ['as'=>'postLogin','uses' => 'LoginController@postLogin']);
+Route::get('qho_login', ['as'=>'getLogin','uses' => 'LoginController@getLogin']);
+Route::post('qho_login', ['as'=>'postLogin','uses' => 'LoginController@postLogin']);
 Route::get('logout', ['as'=>'getLogout','uses' => 'LoginController@getLogout']);
 
 
-
-Route::get('admin', ['as'=>'admin','middleware' => 'auth',function(){
-	return view('admin.dashbroard.main');
-}]);
-
+Route::group(['middleware' => 'auth','namespace' => 'Admin'], function () {
+	Route::group(['prefix' => 'qho_admin'],function(){
+		Route::get('/',function(){
+			return view('admin.module.dashbroard.main');
+		});
+		Route::group(['prefix' => 'category'],function(){
+			Route::get('add',['as'=>'getCatetAdd','uses'=>'CateController@getCatetAdd']);
+			Route::post('add',['as'=>'postCatetAdd','uses'=>'CateController@postCatetAdd']);
+		});
+		Route::group(['prefix' => 'user'],function(){
+	
+		});
+		Route::group(['prefix' => 'news'],function(){
+	
+		});
+	});
+});

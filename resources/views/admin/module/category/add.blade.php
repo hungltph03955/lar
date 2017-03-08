@@ -2,6 +2,7 @@
 @section('title','Thêm Loại Tin')
 @section('content')
 <form action="" method="POST" style="width: 650px;">
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<fieldset>
 				<legend>Thông Tin Danh Mục</legend>
 				<span class="form_label">Danh mục cha:</span>

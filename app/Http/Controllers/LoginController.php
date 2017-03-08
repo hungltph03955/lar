@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
 
 class LoginController extends Controller
 {
     public function getLogin () 
     {
     	if (!Auth::check()) {
-    		return view('admin.login.login');
+    		return view('admin.module.login.login');
     	}else 
     	{
-    		return redirect()->route('admin');
+    		return redirect('qho_admin');
     	}
     }
 
@@ -30,7 +30,7 @@ class LoginController extends Controller
     		'level' => 1
     		];
     	if (Auth::attempt($login)) {
-           return redirect()->route('admin');
+           return redirect('qho_admin');
         }else 
         {
         	return redirect()->back();
