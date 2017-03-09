@@ -12,12 +12,12 @@ class CateController extends Controller
 {
 	public function getCateAdd() 
 	{
-		return view('admin.module.category.add');
+		$nameCategory = Cate::select('id','name','parent_id')->get()->toArray();
+		return view('admin.module.category.add',['dataCate' => $nameCategory ]);
 	}
 
 	public function postCateAdd(CateAddRequest $request) 
 	{
-		echo ("111111111");die;
 		$cate 				= new Cate;
         $cate->name 		= $request->txtCateName;
         $cate->slug 		= str_slug($request->txtCateName,'-');
@@ -25,7 +25,12 @@ class CateController extends Controller
         $cate->created_at 	= new DateTime();
         $cate->save();
 
-        return redirect()->route('getCateList')->with(['flash_level' =>'success','flash_message' => 'Success !! Complete Add Category']);
-
+        return redirect()->route('getCateList')->with(['flash_level' =>'result_msg','flash_message' => 'Thêm danh mục thành công !!']);
 	}
+
+	public function getCateList () 
+	{
+		return view('admin.module.category.list');
+	}
+
 }

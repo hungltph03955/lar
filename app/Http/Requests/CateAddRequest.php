@@ -24,14 +24,14 @@ class CateAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtCateName'   =>  'required|unique:name',  
+            'txtCateName'   =>  'required|unique:qt64_category,name',  
         ];
     }
     public function messages() 
     {
         return [
             'txtCateName.required'  => 'Vui lòng nhập tên danh mục',
-            'txtCateName.unique'    => 'Tên danh mục đã tồn tại',
+            'txtCateName.unique'    => 'Tên danh mục đã tồn tại'
         ];
     }
    

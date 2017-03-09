@@ -4,6 +4,8 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="QuocTuan.Info" />
     <link rel="stylesheet" href="{!! asset('qt64_admin/templates/css/style.css') !!}" />
+    <script src="{!! asset('qt64_admin/templates/js/jquery-3.1.1.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('qt64_admin/templates/js/myscript.js') !!}" type="text/javascript"></script>
 	<title>Admin Area ::  @yield('title');  </title>
 </head>
 <body>
@@ -25,6 +27,7 @@
 	</div>
     <div id="main">
     	@include('admin.blocks.error')
+    	@include('admin.blocks.flash')
 		 @yield('content');  
 	</div>
     <div id="bottom">
