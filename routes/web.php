@@ -26,8 +26,9 @@ Route::group(['middleware' => 'auth','namespace' => 'Admin'], function () {
 			return view('admin.module.dashbroard.main');
 		});
 		Route::group(['prefix' => 'category'],function(){
-			Route::get('add',['as'=>'getCatetAdd','uses'=>'CateController@getCatetAdd']);
-			Route::post('add',['as'=>'postCatetAdd','uses'=>'CateController@postCatetAdd']);
+			Route::get('list',['as'=>'getCateList','uses'=>'CateController@getCateList']);
+			Route::get('add',['as'=>'getCateAdd','uses'=>'CateController@getCateAdd']);
+			Route::post('add',['as'=>'postCateAdd','uses'=>'CateController@postCateAdd']);
 		});
 		Route::group(['prefix' => 'user'],function(){
 	

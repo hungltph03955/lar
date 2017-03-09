@@ -24,16 +24,15 @@ class CateAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtCateName'   =>  'required|unique:name|max:50'  
+            'txtCateName'   =>  'required|unique:name',  
         ];
     }
-
     public function messages() 
     {
         return [
             'txtCateName.required'  => 'Vui lòng nhập tên danh mục',
             'txtCateName.unique'    => 'Tên danh mục đã tồn tại',
-            'txtCateName.max'       => 'Tên Danh mục Vượt quá kí tự'
         ];
     }
+   
 }
