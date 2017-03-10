@@ -17,4 +17,40 @@
 			}
 		}
 	}
+
+	function listCate($data,$parent=0,$str="|") 
+	{
+		$stt = 0;
+		foreach ($data as $value) {
+			$stt ++;
+			$id	 	= $value["id"];
+			$name 	= $value["name"];
+			
+			if($value["parent_id"] == $parent) 
+			{
+				echo '
+				<tr class="list_data">
+	                <td class="aligncenter">'.$stt.'</td>';
+	            if ($str == "|") 
+	            {
+	            	echo '<td class="list_td alignleft"><b>'.$str." ".$name.'</b></td>';
+	            }else 
+	            {
+	            	echo '<td class="list_td alignleft">'.$str." ".$name.'</td>';
+	            }   
+
+
+	             echo '<td class="list_td aligncenter">
+	                    <a href=""><img src="../../qt64_admin/templates/images/edit.png" /></a>&nbsp;&nbsp;&nbsp;
+	                    <a href=""><img src="../../qt64_admin/templates/images/delete.png" /></a>
+	                	</td>
+	            </tr>';
+				listCate($data,$id,$str."_________|");
+			}
+		}
+	}
+
+
+
+
 ?>

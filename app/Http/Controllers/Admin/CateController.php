@@ -30,7 +30,8 @@ class CateController extends Controller
 
 	public function getCateList () 
 	{
-		return view('admin.module.category.list');
+		$nameCategory = Cate::select('id','name','parent_id')->get()->toArray();
+		return view('admin.module.category.list',['data' => $nameCategory ]);
 	}
 
 }
