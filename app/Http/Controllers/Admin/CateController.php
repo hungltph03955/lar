@@ -34,4 +34,18 @@ class CateController extends Controller
 		return view('admin.module.category.list',['data' => $nameCategory ]);
 	}
 
+	public function getCateDel ($id) 
+	{
+		$parent = Cate::where('parent_id', $id)->count();
+		if ( $parent == 0) 
+		{
+			$cate = Cate::findOrFail($id);
+			$cate->delete($id);
+			return redirect()->route('getCateList')->with(['flash_level' =>'result_msg','flash_message' => 'Xóa danh mục thành công !!']);
+		}else 
+		{
+			return redirect()->route('getCateList')->with(['flash_level' =>'error_msg','flash_message' => 'Bạn không thể xóa danh mục này !!']);
+		}
+	}
+
 }

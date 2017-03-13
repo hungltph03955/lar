@@ -22,15 +22,13 @@
 	{
 		$stt = 0;
 		foreach ($data as $value) {
-			$stt ++;
 			$id	 	= $value["id"];
 			$name 	= $value["name"];
 			
 			if($value["parent_id"] == $parent) 
 			{
 				echo '
-				<tr class="list_data">
-	                <td class="aligncenter">'.$stt.'</td>';
+				<tr class="list_data">';
 	            if ($str == "|") 
 	            {
 	            	echo '<td class="list_td alignleft"><b>'.$str." ".$name.'</b></td>';
@@ -42,15 +40,11 @@
 
 	             echo '<td class="list_td aligncenter">
 	                    <a href=""><img src="../../qt64_admin/templates/images/edit.png" /></a>&nbsp;&nbsp;&nbsp;
-	                    <a href=""><img src="../../qt64_admin/templates/images/delete.png" /></a>
+	                    <a href="delete/'.$id.'"  onclick="return xacnhanxoa(\'Bạn có chắc chắn muốn xóa danh mục này ?\')"><img src="../../qt64_admin/templates/images/delete.png" /></a>
 	                	</td>
 	            </tr>';
 				listCate($data,$id,$str."_________|");
 			}
 		}
 	}
-
-
-
-
 ?>

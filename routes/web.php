@@ -29,10 +29,14 @@ Route::group(['middleware' => 'auth','namespace' => 'Admin'], function () {
 			Route::get('list',['as'=>'getCateList','uses'=>'CateController@getCateList']);
 			Route::get('add',['as'=>'getCateAdd','uses'=>'CateController@getCateAdd']);
 			Route::post('add',['as'=>'postCateAdd','uses'=>'CateController@postCateAdd']);
+			Route::get('delete/{id}',['as'=>'getCateDel','uses'=>'CateController@getCateDel'])->where('id', '[0-9]+');;
 		});
 		Route::group(['prefix' => 'user'],function(){
-	
+			Route::get('list',['as'=>'getUserList','uses'=>'UserController@getUserList']);
+			Route::get('add',['as'=>'getUserAdd','uses'=>'UserController@getUserAdd']);
+			Route::post('add',['as'=>'postUserAdd','uses'=>'UserController@postUserAdd']);
 		});
+
 		Route::group(['prefix' => 'news'],function(){
 	
 		});
