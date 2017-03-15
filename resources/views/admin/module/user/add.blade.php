@@ -19,8 +19,16 @@
 				</span><br />
 				<span class="form_label">Level:</span>
 				<span class="form_item">
-					<input type="radio" name="rdoLevel" value="1" /> Admin 
-					<input type="radio" name="rdoLevel" value="2" checked="checked" /> Member
+					<input type="radio" name="rdoLevel" value="1" 
+					@if (old('rdoLevel') == 1)
+						checked
+					@endif
+					 /> Admin 
+					<input type="radio" name="rdoLevel" value="2"
+					@if (old('rdoLevel') == 2)
+						checked
+					@endif
+					/> Member
 				</span><br />
 				<span class="form_label"></span>
 				<span class="form_item">

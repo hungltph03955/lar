@@ -39,7 +39,7 @@
 
 
 	             echo '<td class="list_td aligncenter">
-	                    <a href=""><img src="../../qt64_admin/templates/images/edit.png" /></a>&nbsp;&nbsp;&nbsp;
+	                    <a href="edit/'.$id.'"><img src="../../qt64_admin/templates/images/edit.png" /></a>&nbsp;&nbsp;&nbsp;
 	                    <a href="delete/'.$id.'"  onclick="return xacnhanxoa(\'Bạn có chắc chắn muốn xóa danh mục này ?\')"><img src="../../qt64_admin/templates/images/delete.png" /></a>
 	                	</td>
 	            </tr>';

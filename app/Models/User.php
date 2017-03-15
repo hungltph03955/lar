@@ -16,7 +16,7 @@ class User extends Authenticatable
      */
     protected $table = 'qt64_users';
     protected $fillable = [
-        'username', 'password', 'level',
+        'username', 'password', 'level','created_at','updated_at'
     ];
 
     /**
