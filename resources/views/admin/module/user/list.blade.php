@@ -8,9 +8,11 @@
                 <td>Level</td>
                 <td class="action_col">Quản lý?</td>
             </tr>
+            <?php $stt = 0 ?>
             @foreach($user as $item_user)
+            <?php $stt++ ?>
             <tr class="list_data">
-                <td class="aligncenter">1</td>
+                <td class="aligncenter">{{ $stt }}</td>
                 <td class="list_td aligncenter">{{ $item_user["username"] }}</td>
 
                 <td class="list_td aligncenter">
@@ -24,7 +26,7 @@
                 </td>
                 <td class="list_td aligncenter">
                      <a href=""><img src="{!! asset('qt64_admin/templates/images/edit.png') !!}" /></a>&nbsp;&nbsp;&nbsp;
-                    <a href=""><img src="{!! asset('qt64_admin/templates/images/delete.png') !!}" /></a>
+                    <a href="{{ route('getUserDel', ['id' => $item_user["id"] ]) }}" onclick="return xacnhanxoa('Bạn có chắc chắn muốn xóa danh mục này ?')"><img src="{!! asset('qt64_admin/templates/images/delete.png') !!}" /></a>
                 </td>
             </tr>
             @endforeach

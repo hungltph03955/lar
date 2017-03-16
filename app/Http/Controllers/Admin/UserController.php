@@ -8,9 +8,15 @@ use App\Http\Requests\UserAddRequest;
 use App\Models\User;
 use DateTime;
 use Hash;
+use Auth;
 
 class UserController extends Controller
 {
+public function getUserList () 
+   {
+   		$user = User::select('id','username','level')->get()->toArray();
+   		return view('admin.module.user.list',['user'=>$user]);
+   }
    public function getUserAdd () 
    {
    		return view('admin.module.user.add');
@@ -28,10 +34,18 @@ class UserController extends Controller
         return redirect()->route('getUserList')->with(['flash_level'=>'result_msg','flash_message'=>'Thêm người dùng thành công !!']);
    }
 
-   public function getUserList () 
+   public function getUserDel($id) 
    {
-   		$user = User::select('id','username','level')->get()->toArray();
-   		return view('admin.module.user.list',['user'=>$user]);
+   		$user_current_login = Auth::user()->id;
+   		$user_delete = User::findOrFail($id);
+   		if ($id == 1 || ($user_current_login != 1 && $user_delete["level"] == 1)) 
+   		{
+   			return redirect()->route('getUserList')->with(['flash_level'=>'error_msg','flash_message'=>'Bạn không có quyền xóa !!!']);
+   		}else
+   		{
+   			$user_delete->delete($id);
+   			return redirect()->route('getUserList')->with(['flash_level'=>'result_msg','flash_message'=>'Xóa thành công !!!']);
+   		}
    }
 
 

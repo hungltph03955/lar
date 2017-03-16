@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth','namespace' => 'Admin'], function () {
 			Route::get('list',['as'=>'getUserList','uses'=>'UserController@getUserList']);
 			Route::get('add',['as'=>'getUserAdd','uses'=>'UserController@getUserAdd']);
 			Route::post('add',['as'=>'postUserAdd','uses'=>'UserController@postUserAdd']);
+			Route::get('delete/{id}',['as'=>'getUserDel','uses'=>'UserController@getUserDel'])->where('id', '[0-9]+');
 		});
 
 		Route::group(['prefix' => 'news'],function(){
