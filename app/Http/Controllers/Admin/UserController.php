@@ -24,14 +24,14 @@ public function getUserList ()
 
    public function postUserAdd (UserAddRequest $request) 
    {
-   		$user 					=  new User;
-   		$user->username 		= $request->txtUser;
-   		$user->password 		= Hash::make($request->txtPas);
-   		$user->level 			= $request->rdoLevel;
-   		$user->remember_token 	= $request->_token;
-        $user->created_at 		= new DateTime();
-        $user->save();
-        return redirect()->route('getUserList')->with(['flash_level'=>'result_msg','flash_message'=>'Thêm người dùng thành công !!']);
+      $user 					=  new User;
+      $user->username 		= $request->txtUser;
+      $user->password 		= Hash::make($request->txtPas);
+      $user->level 			= $request->rdoLevel;
+      $user->remember_token 	= $request->_token;
+      $user->created_at 		= new DateTime();
+      $user->save();
+      return redirect()->route('getUserList')->with(['flash_level'=>'result_msg','flash_message'=>'Thêm người dùng thành công !!']);
    }
 
    public function getUserDel($id) 
@@ -46,6 +46,15 @@ public function getUserList ()
    			$user_delete->delete($id);
    			return redirect()->route('getUserList')->with(['flash_level'=>'result_msg','flash_message'=>'Xóa thành công !!!']);
    		}
+   }
+
+   public function getUserEdit($id) 
+   {
+      return view('admin.module.user.edit');
+   }
+   public function postUserEdit($id) 
+   {
+      
    }
 
 

@@ -25,7 +25,7 @@
                     @endif
                 </td>
                 <td class="list_td aligncenter">
-                     <a href=""><img src="{!! asset('qt64_admin/templates/images/edit.png') !!}" /></a>&nbsp;&nbsp;&nbsp;
+                     <a href="{{ route('getUserEdit', ['id' => $item_user["id"] ]) }}"><img src="{!! asset('qt64_admin/templates/images/edit.png') !!}" /></a>&nbsp;&nbsp;&nbsp;
                     <a href="{{ route('getUserDel', ['id' => $item_user["id"] ]) }}" onclick="return xacnhanxoa('Bạn có chắc chắn muốn xóa danh mục này ?')"><img src="{!! asset('qt64_admin/templates/images/delete.png') !!}" /></a>
                 </td>
             </tr>
