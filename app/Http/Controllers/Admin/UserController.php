@@ -50,7 +50,12 @@ public function getUserList ()
 
    public function getUserEdit($id) 
    {
-      return view('admin.module.user.edit');
+      $data = User::findOrFail($id);
+      if ((Auth::user()->id != 1) && ($id = 1 && $data['level'] == 1 && Auth::user()->id != $id)) 
+      {
+        return redirect()->route('getUserList')->with(['flash_level'=>'error_msg','flash_message'=>'Bạn không có quyền sửa thành viên này !!!']);
+      }
+      return view('admin.module.user.edit',['data'=>$data]);
    }
    public function postUserEdit($id) 
    {
