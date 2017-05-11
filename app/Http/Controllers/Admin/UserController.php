@@ -57,11 +57,25 @@ public function getUserList ()
       }
       return view('admin.module.user.edit',['data'=>$data]);
    }
-   public function postUserEdit($id) 
+   public function postUserEdit(Request $request,$id) 
    {
-      
+      $user = User::findOrFail($id);
+      if($request->txtPass)
+      {
+         $this->validate($request, [
+             'txtRepass' => 'same:txtPass',
+         ],
+         [
+            'txtRepass.same' => 'Nhập lại mật khẩu sai',
+         ]
+         );
+         $user->password = Hash::make($request->txtPass);
+      }
+      if ($request->rdoLevel) {
+           $user->level       = $request->rdoLevel;
+      }
+      $user->updated_at       = new DateTime();
+      $user->save();
+     return redirect()->route('getUserList')->with(['flash_level'=>'result_msg','flash_message'=>'Cập nhập thành viên  thành công !!!']);
    }
-
-
-
 }
