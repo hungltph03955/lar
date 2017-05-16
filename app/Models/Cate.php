@@ -9,4 +9,11 @@ class Cate extends Model
 	protected $table = 'qt64_category';
 
 	protected $fillable = ['id','name','slug','parent_id','created_at'];
+
+	public function news()
+    {
+        return $this->hasMany('App\Models\News');
+    }
+
+
 }

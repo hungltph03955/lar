@@ -45,7 +45,12 @@ Route::group(['middleware' => 'auth','namespace' => 'Admin'], function () {
 		});
 
 		Route::group(['prefix' => 'news'],function(){
-	
+			Route::get('list',['as'=>'getNewsList','uses'=>'NewsController@getNewsList']);
+			Route::get('add',['as'=>'getNewsAdd','uses'=>'NewsController@getNewsAdd']);
+			Route::post('add',['as'=>'postNewsAdd','uses'=>'NewsController@postNewsAdd']);
+			Route::get('delete/{id}',['as'=>'getNewsDel','uses'=>'NewsController@getNewsDel'])->where('id', '[0-9]+');
+			Route::get('edit/{id}',['as'=>'getNewsEdit','uses'=>'NewsController@getNewsEdit'])->where('id', '[0-9]+');;
+			Route::post('edit/{id}',['as'=>'postNewsEdit','uses'=>'NewsController@postNewsEdit']);
 		});
 	});
 });

@@ -7,6 +7,7 @@
     <script src="{!! asset('qt64_admin/templates/js/jquery-3.1.1.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('qt64_admin/templates/js/myscript.js') !!}" type="text/javascript"></script>
 	<title>Admin Area ::  @yield('title');  </title>
+	<script type="text/javascript" src="{!! asset('qt64_admin/templates/js/plugin/ckeditor/ckeditor.js') !!}"></script>
 </head>
 <body>
 <div id="layout">
@@ -17,7 +18,7 @@
 		<table width="100%">
 			<tr>
 				<td>
-					<a href="">Trang chính</a> | <a href="">Quản lý user</a> | <a href="">Quản lý danh mục</a> | <a href="">Quản lý tin</a>
+					<a href="{{ url("/qho_admin") }}">Trang chính</a> | <a href="{{ route('getUserList') }}">Quản lý user</a> | <a href="{{ route('getCateList') }}">Quản lý danh mục</a> | <a href="{{ route('getNewsList') }}">Quản lý tin</a>
 				</td>
 				<td align="right">
 					Xin chào {{ Auth::user()->username }} | <a href="{{ url('logout') }}">Logout</a>

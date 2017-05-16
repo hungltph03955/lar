@@ -9,35 +9,21 @@
                 <td>Thời Gian</td>
                 <td class="action_col">Quản lý?</td>
             </tr>
+            @foreach($dataNew as $item_dataNew)
             <tr class="list_data">
                 <td class="aligncenter">1</td>
-                <td class="list_td aligncenter">Hàng chục người tháo chạy khi voi xông ra đường</td>
-                <td class="list_td aligncenter">Quốc Tuấn</td>
-                <td class="list_td aligncenter">12/08/2016</td>
+                <td class="list_td aligncenter">{{ $item_dataNew["title"] }}</td>
+                <td class="list_td aligncenter">{{ $item_dataNew["author"] }}</td>
+                <td class="list_td aligncenter">{{ $item_dataNew["created_at"] }}</td>
                 <td class="list_td aligncenter">
-                    <a href=""><img src="{!! asset('qt64_admin/templates/images/edit.png') !!}" /></a>&nbsp;&nbsp;&nbsp;
-                    <a href=""><img src="{!! asset('qt64_admin/templates/images/delete.png') !!}" /></a>
+                    <a href="{{ route('getNewsEdit', ['id' => $item_dataNew["id"] ]) }}"><img src="{!! asset('qt64_admin/templates/images/edit.png') !!}" /></a>&nbsp;&nbsp;&nbsp;
+
+                    
+                    <a href="{{ route('getNewsDel', ['id' => $item_dataNew["id"] ]) }}"><img src="{!! asset('qt64_admin/templates/images/delete.png') !!}" /></a>
                 </td>
             </tr>
-            <tr class="list_data">
-                <td class="aligncenter">2</td>
-                <td class="list_td aligncenter">Hàng chục người tháo chạy khi voi xông ra đường</td>
-                <td class="list_td aligncenter">Quốc Tuấn</td>
-                <td class="list_td aligncenter">12/08/2016</td>
-                <td class="list_td aligncenter">
-                    <a href=""><img src="{!! asset('qt64_admin/templates/images/edit.png') !!}" /></a>&nbsp;&nbsp;&nbsp;
-                    <a href=""><img src="{!! asset('qt64_admin/templates/images/delete.png') !!}" /></a>
-                </td>
-            </tr>
-            <tr class="list_data">
-                <td class="aligncenter">3</td>
-                <td class="list_td aligncenter">Hàng chục người tháo chạy khi voi xông ra đường</td>
-                <td class="list_td aligncenter">Quốc Tuấn</td>
-                <td class="list_td aligncenter">12/08/2016</td>
-                <td class="list_td aligncenter">
-                    <a href=""><img src="{!! asset('qt64_admin/templates/images/edit.png') !!}" /></a>&nbsp;&nbsp;&nbsp;
-                    <a href=""><img src="{!! asset('qt64_admin/templates/images/delete.png') !!}" /></a>
-                </td>
-            </tr>
+            @endforeach
+            
+            
         </table>
 @endsection

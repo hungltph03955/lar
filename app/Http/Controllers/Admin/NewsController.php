@@ -5,23 +5,67 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsAddRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Cate;
+use App\Models\News;
+use App\Models\User;
+use DateTime;
+use Auth;
 
 class NewsController extends Controller
 {
     public function getNewsList()
     {
-
+    	$news = News::select('id','title','author','created_at')->orderBy('id','DESC')->get()->toArray();
+    	return view('admin.module.news.list',['dataNew' => $news]);
     }
 
 
-     public function getNewsAdd()
+    public function getNewsAdd()
     {
-    	return view('admin.module.news.add');
+    	$Cate = Cate::select('id','name','parent_id')->get()->toArray();
+    	return view('admin.module.news.add',['dataCate' => $Cate ]);
     }
 
 
     public function postNewsAdd(NewsAddRequest $request)
     {
-    	echo "1111";
+    	$news 				= new News;
+    	$file 				= $request->file('newsImg');
+    	$news->title 		= $request->txtTitle;
+    	$news->alias 		= str_slug($request->txtTitle,'-');
+    	$news->author 		= $request->txtAuthor;
+    	$news->intro 		= $request->txtIntro;
+    	$news->full 		= $request->txtFull;
+    	$news->status 		= $request->rdoPublic;
+    	$news->category_id 	= $request->sltCate;
+    	$news->user_id = Auth::user()->id;
+    	$news->created_at 	= new DateTime();
+    	if(strlen($file) > 0)
+    	{
+			$filename  = time() . '.' . $file->getClientOriginalName();
+			$destinationPath = 'public\uploads\news';
+			$file->move($destinationPath,$filename);
+			$news->image 		= $filename;
+    	}
+    	$news->save();
+    	return redirect()->route('getNewsList')->with(['flash_level' =>'result_msg','flash_message' => 'Thêm danh mục thành công !!']);
     }
+
+
+    public function getNewsDel()
+    {
+    	
+    }
+
+    public function getNewsEdit()
+    {
+    	
+    }
+
+    
+    public function postNewsEdit()
+    {
+    	
+    }
+
 }

@@ -36,10 +36,28 @@
 				<span class="form_label">Trích dẫn:</span>
 				<span class="form_item">
 					<textarea name="txtIntro" rows="5" class="textbox"></textarea>
+					<script type="text/javascript">
+					var editor = CKEDITOR.replace('txtIntro',{
+						language:'vi',
+						filebrowserImageBrowseUrl : '../../qt64_admin/templates/js/plugin/ckfinder/ckfinder.html?Type=Images',
+						filebrowserFlashBrowseUrl : '../../qt64_admin/templates/js/plugin/ckfinder/ckfinder.html?Type=Flash',
+						filebrowserImageUploadUrl : '../../qt64_admin/templates/js/plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+						filebrowserFlashUploadUrl : '../../qt64_admin/templates/js/plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+						});
+					</script>
 				</span><br />
 				<span class="form_label">Nội dung tin:</span>
 				<span class="form_item">
 					<textarea name="txtFull" rows="8" class="textbox"></textarea>
+					<script type="text/javascript">
+					var editor = CKEDITOR.replace('txtFull',{
+						language:'vi',
+						filebrowserImageBrowseUrl : '../../qt64_admin/templates/js/plugin/ckfinder/ckfinder.html?Type=Images',
+						filebrowserFlashBrowseUrl : '../../qt64_admin/templates/js/plugin/ckfinder/ckfinder.html?Type=Flash',
+						filebrowserImageUploadUrl : '../../qt64_admin/templates/js/plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+						filebrowserFlashUploadUrl : '../../qt64_admin/templates/js/plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+						});
+					</script>
 				</span><br />
 				<span class="form_label">Hình hiện tại:</span>
 				<span class="form_item">
