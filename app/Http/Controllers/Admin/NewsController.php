@@ -4,18 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsAddRequest;
+use App\Http\Requests\NewsEditRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Cate;
 use App\Models\News;
 use App\Models\User;
-use DateTime;
+use DateTime,File;
 use Auth;
 
 class NewsController extends Controller
 {
     public function getNewsList()
     {
-    	$news = News::select('id','title','author','created_at')->orderBy('id','DESC')->get()->toArray();
+    	$news = News::select('id','title','author','created_at','category_id')->orderBy('id','DESC')->get()->toArray();
     	return view('admin.module.news.list',['dataNew' => $news]);
     }
 
@@ -48,22 +49,30 @@ class NewsController extends Controller
 			$news->image 		= $filename;
     	}
     	$news->save();
-    	return redirect()->route('getNewsList')->with(['flash_level' =>'result_msg','flash_message' => 'Thêm danh mục thành công !!']);
+    	return redirect()->route('getNewsList')->with(['flash_level' =>'result_msg','flash_message' => 'Thêm Tin Tức Thành Công !!']);
     }
 
 
-    public function getNewsDel()
+    public function getNewsDel($id)
     {
-    	
+    	 $news = News::findOrFail($id);
+    	 $filename = 'public/uploads/news/'.$news->image;
+    	 if (File::exists($filename)) {
+		    File::delete($filename);
+		}
+		$news->delete($id);
+		return redirect()->route('getNewsList')->with(['flash_level' =>'result_msg','flash_message' => ' Xóa Tin Tức Thành Công !!']);
     }
 
-    public function getNewsEdit()
+    public function getNewsEdit($id)
     {
-    	
+    	$news = News::findOrFail($id);
+    	$Cate = Cate::select('id','name','parent_id')->get()->toArray();
+    	return view('admin.module.news.edit',['data_news'=>$news,'data_Cate'=>$Cate]);
     }
 
     
-    public function postNewsEdit()
+    public function postNewsEdit(NewsEditRequest $request,$id)
     {
     	
     }

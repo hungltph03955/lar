@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewsAddRequest extends FormRequest
+class NewsEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class NewsAddRequest extends FormRequest
     {
         return [
             'sltCate'  => 'required',
-            'txtTitle'  => 'required|unique:qt64_news,title',
+            'txtTitle'  => 'required',
             'txtAuthor'  => 'required',
             'txtIntro'  => 'required',
             'txtFull'  => 'required',
-            'newsImg'  => 'required|image',
+            'newsImg'  => 'image',
         ];
     }
 
@@ -39,11 +39,9 @@ class NewsAddRequest extends FormRequest
         return [
             'sltCate.required'  => 'Tên Danh Mục không được để trống',
             'txtTitle.required'  => 'Tên Tiêu Đề không được để trống',
-            'txtTitle.unique'  => 'Tên Tiêu Đề Đã Bị Trùng',
             'txtAuthor.required'  => 'Tên Tác Giả không được để trống',
             'txtIntro.required'  => 'Mục Trích Dẫn không được để trống',
             'txtFull.required'  => 'Mục Nội Dung không được để trống',
-            'newsImg.required'  => 'Hình Ảnh Đại Diện không được để trống',
             'newsImg.image'  => 'Hình Ảnh Đại Diện Không Đúng Định Dạng',
         ];
     }
