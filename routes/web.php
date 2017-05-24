@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => '/','namespace'=>'User'],function(){
+	Route::get('/', ['as'=>'index','uses' => 'MainController@getIndex']);
+	Route::get('cate', ['as'=>'index','uses' => 'MainController@getCate']);
+	Route::get('detail', ['as'=>'index','uses' => 'MainController@getDetail']);
+});
+
 Route::get('qho_login', ['as'=>'getLogin','uses' => 'LoginController@getLogin']);
 Route::post('qho_login', ['as'=>'postLogin','uses' => 'LoginController@postLogin']);
 Route::get('logout', ['as'=>'getLogout','uses' => 'LoginController@getLogout']);
@@ -23,7 +29,10 @@ Route::get('logout', ['as'=>'getLogout','uses' => 'LoginController@getLogout']);
 Route::group(['middleware' => 'auth','namespace' => 'Admin'], function () {
 	Route::group(['prefix' => 'qho_admin'],function(){
 		Route::get('/',function(){
-			return view('admin.module.dashbroard.main');
+			$stas_user = DB::table('qt64_users')->count();
+			$stas_cate = DB::table('qt64_category')->count();
+			$stas_news = DB::table('qt64_news')->count();
+			return view('admin.module.dashbroard.main',['stas_user'=>$stas_user,'stas_cate'=>$stas_cate,'stas_news'=>$stas_news]);
 		});
 		Route::group(['prefix' => 'category'],function(){
 			Route::get('list',['as'=>'getCateList','uses'=>'CateController@getCateList']);

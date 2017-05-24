@@ -48,12 +48,8 @@
 				</span><br />
 				<span class="form_label">Hình hiện tại:</span>
 				<span class="form_item">
-
-
-					
-
 					<img src="{!! isset($data_news['image']) ? asset('../../public/uploads/news/'.$data_news['image']) : asset('qt64_admin/templates/images/nophoto.png') !!}" width="100px" />
-
+					<input type="hidden" name="fImageCurrent" value="{{ $data_news['image'] }}">
 				</span><br />
 				<span class="form_label">Hình đại diện:</span>
 				<span class="form_item">
@@ -61,8 +57,16 @@
 				</span><br />
 				<span class="form_label">Công bố tin:</span>
 				<span class="form_item">
-					<input type="radio" name="rdoPublic" value="Y" checked="checked" /> Có 
-					<input type="radio" name="rdoPublic" value="N" /> Không
+					<input type="radio" name="rdoPublic" value="1""
+					@if($data_news['status'] == 1)
+						checked 
+					@endif
+					 /> Có 
+					<input type="radio" name="rdoPublic" value="0" 
+					@if($data_news['status'] == 0)
+						checked 
+					@endif
+					/> Không
 				</span><br />
 				<span class="form_label"></span>
 				<span class="form_item">

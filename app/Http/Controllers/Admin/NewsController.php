@@ -74,7 +74,31 @@ class NewsController extends Controller
     
     public function postNewsEdit(NewsEditRequest $request,$id)
     {
-    	
+    	$news = News::findOrFail($id);
+		$file 				= $request->file('newsImg');
+		$news->title 		= $request->txtTitle;
+		$news->alias 		= str_slug($request->txtTitle,'-');
+		$news->author 		= $request->txtAuthor;
+		$news->intro 		= $request->txtIntro;
+		$news->full 		= $request->txtFull;
+		$news->status 		= $request->rdoPublic;
+		$news->category_id 	= $request->sltCate;
+		$news->user_id = Auth::user()->id;
+		$news->created_at 	= new DateTime();
+		if(strlen($file) > 0)
+		{
+		$fImageCurrent = $request->fImageCurrent;
+		$fImageCurrentFoder = 'public/uploads/news/'.$fImageCurrent;
+    	if (File::exists($fImageCurrentFoder)) {
+		    File::delete($fImageCurrentFoder);
+		}
+		$filename  = time() . '.' . $file->getClientOriginalName();
+		$destinationPath = 'public\uploads\news';
+		$file->move($destinationPath,$filename);
+		$news->image 		= $filename;
+		}
+		$news->save();
+		return redirect()->route('getNewsList')->with(['flash_level' =>'result_msg','flash_message' => 'Sửa Tin Tức Thành Công !!']);
     }
 
 }
