@@ -13,7 +13,7 @@ class News extends Model
 
 	public function cate()
 	{
-		return $this->belongsTo('App\Models\Cate');
+		return $this->belongsTo('App\Models\Cate','category_id');
 	}
 
 	public function user()
